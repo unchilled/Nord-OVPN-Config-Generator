@@ -1,44 +1,412 @@
-const servers = require('./servers.json');
 const args = process.argv.slice(2);
 const fetch = require('node-fetch');
 const fs = require('fs');
-
-// <country> [latmatch] [city]
 
 if(args.length == 0) {
     console.log("Usage: node index.js <country> [city]")
     process.exit(1)
 }
 
-let country = args[0]
+let country = "Unknown";
 
-if(country == "usa" || country == "unitedstates") country = "us";
+if(args[0].toLowerCase() == "unitedstates" || args[0].toLowerCase() == "unitedstatesofamerica" || args[0].toLowerCase() == "us" || args[0].toLowerCase() == "usa") {
+    country = "United States";
+}
+    
+if(args[0].toLowerCase() == "canada" || args[0].toLowerCase() == "ca") {
+    country = "Canada";
+}
+    
+if(args[0].toLowerCase() == "brazil" || args[0].toLowerCase() == "br") {
+    country = "Brazil";
+}
+    
+if(args[0].toLowerCase() == "argentina" || args[0].toLowerCase() == "ar") {
+    country = "Argentina";
+}
+    
+if(args[0].toLowerCase() == "mexico" || args[0].toLowerCase() == "mx") {
+    country = "Mexico";
+}
 
-let filename = country + ".ovpn"
+if(args[0].toLowerCase() == "costarica" || args[0].toLowerCase() == "cr") {
+    country = "Costa Rica";
+}
+    
+if(args[0].toLowerCase() == "chile" || args[0].toLowerCase() == "cl") {
+    country = "Chile";
+}
+    
+if(args[0].toLowerCase() == "unitedkingdom" || args[0].toLowerCase() == "uk" || args[0].toLowerCase() == "gb") {
+    country = "United Kingdom";
+}
+    
+if(args[0].toLowerCase() == "germany" || args[0].toLowerCase() == "de") {
+    country = "Germany";
+}
+    
+if(args[0].toLowerCase() == "netherlands" || args[0].toLowerCase() == "holland" || args[0].toLowerCase() == "nl") {
+    country = "Netherlands";
+}
+    
+if(args[0].toLowerCase() == "france" || args[0].toLowerCase() == "fr") {
+    country = "France";
+}
+    
+if(args[0].toLowerCase() == "sweden" || args[0].toLowerCase() == "se") {
+    country = "Sweden";
+}
+    
+if(args[0].toLowerCase() == "switzerland" || args[0].toLowerCase() == "ch") {
+    country = "Switzerland";
+}
+    
+if(args[0].toLowerCase() == "belgium" || args[0].toLowerCase() == "be") {
+    country = "Belgium";
+}
+    
+if(args[0].toLowerCase() == "denmark" || args[0].toLowerCase() == "dk") {
+    country = "Denmark";
+}
+    
+if(args[0].toLowerCase() == "norway" || args[0].toLowerCase() == "no") {
+    country = "Norway";
+}
+
+if(args[0].toLowerCase() == "poland" || args[0].toLowerCase() == "pl") {
+    country = "Poland";
+}
+    
+if(args[0].toLowerCase() == "ireland" || args[0].toLowerCase() == "ie") {
+    country = "Ireland";
+}
+    
+if(args[0].toLowerCase() == "czechrepublic" || args[0].toLowerCase() == "czech" || args[0].toLowerCase() == "cz") {
+    country = "Czech Republic";
+}
+    
+if(args[0].toLowerCase() == "italy" || args[0].toLowerCase() == "it") {
+    country = "Italy";
+}
+    
+if(args[0].toLowerCase() == "spain" || args[0].toLowerCase() == "es") {
+    country = "Spain";
+}
+
+if(args[0].toLowerCase() == "finland" || args[0].toLowerCase() == "fi") {
+    country = "Finland";
+}
+    
+if(args[0].toLowerCase() == "serbia" || args[0].toLowerCase() == "rs") {
+    country = "Serbia";
+}
+    
+if(args[0].toLowerCase() == "austria" || args[0].toLowerCase() == "at") {
+    country = "Austria";
+}
+    
+if(args[0].toLowerCase() == "slovakia" || args[0].toLowerCase() == "sk") {
+    country = "Slovakia";
+}
+    
+if(args[0].toLowerCase() == "slovenia" || args[0].toLowerCase() == "si") {
+    country = "Slovenia";
+}
+    
+if(args[0].toLowerCase() == "bulgaria" || args[0].toLowerCase() == "bg") {
+    country = "Bulgaria";
+}
+    
+if(args[0].toLowerCase() == "hungary" || args[0].toLowerCase() == "hu") {
+    country = "Hungary";
+}
+    
+if(args[0].toLowerCase() == "latvia" || args[0].toLowerCase() == "lv") {
+    country = "Latvia";
+}
+    
+if(args[0].toLowerCase() == "romania" || args[0].toLowerCase() == "ro") {
+    country = "Romania";
+}
+    
+if(args[0].toLowerCase() == "portugal" || args[0].toLowerCase() == "pt") {
+    country = "Portugal";
+}
+    
+if(args[0].toLowerCase() == "luxembourg" || args[0].toLowerCase() == "lu") {
+    country = "Luxembourg";
+}
+
+if(args[0].toLowerCase() == "ukraine" || args[0].toLowerCase() == "ua") {
+    country = "Ukraine";
+}
+    
+if(args[0].toLowerCase() == "greece" || args[0].toLowerCase() == "gr") {
+    country = "Greece";
+}
+
+if(args[0].toLowerCase() == "estonia" || args[0].toLowerCase() == "ee") {
+    country = "Estonia";
+}
+    
+if(args[0].toLowerCase() == "iceland" || args[0].toLowerCase() == "is") {
+    country = "Iceland";
+}
+    
+if(args[0].toLowerCase() == "albania" || args[0].toLowerCase() == "al") {
+    country = "Albania";
+}
+    
+if(args[0].toLowerCase() == "cyprus" || args[0].toLowerCase() == "cy") {
+    country = "Cyprus";
+}
+    
+if(args[0].toLowerCase() == "croatia" || args[0].toLowerCase() == "hr") {
+    country = "Croatia";
+}
+    
+if(args[0].toLowerCase() == "moldova" || args[0].toLowerCase() == "md") {
+    country = "Moldova";
+}
+    
+if(args[0].toLowerCase() == "bosniaandherzegovina" || args[0].toLowerCase() == "bosnia" || args[0].toLowerCase() == "ba") {
+    country = "Bosnia and Herzegovina";
+}
+    
+if(args[0].toLowerCase() == "georgia" || args[0].toLowerCase() == "ge") {
+    country = "Georgia";
+}
+    
+if(args[0].toLowerCase() == "northmacedonia" || args[0].toLowerCase() == "macedonia" || args[0].toLowerCase() == "mk") {
+    country = "North Macedonia";
+}
+    
+if(args[0].toLowerCase() == "lithuania" || args[0].toLowerCase() == "lt") {
+    country = "Lithuania";
+}
+    
+if(args[0].toLowerCase() == "australia" || args[0].toLowerCase() == "au") {
+    country = "Australia";
+}
+    
+if(args[0].toLowerCase() == "singapore" || args[0].toLowerCase() == "sg") {
+    country = "Singapore";
+}
+    
+if(args[0].toLowerCase() == "japan" || args[0].toLowerCase() == "jp") {
+    country = "Japan";
+}
+    
+if(args[0].toLowerCase() == "hongkong" || args[0].toLowerCase() == "hk") {
+    country = "Hong Kong";
+}
+    
+if(args[0].toLowerCase() == "newzealand" || args[0].toLowerCase() == "nz") {
+    country = "New Zealand";
+}
+
+if(args[0].toLowerCase() == "taiwan" || args[0].toLowerCase() == "tw") {
+    country = "Taiwan";
+}
+    
+if(args[0].toLowerCase() == "vietnam" || args[0].toLowerCase() == "vn") {
+    country = "Vietnam";
+}
+    
+if(args[0].toLowerCase() == "indonesia" || args[0].toLowerCase() == "id") {
+    country = "Indonesia";
+}
+    
+if(args[0].toLowerCase() == "malaysia" || args[0].toLowerCase() == "my") {
+    country = "Malaysia";
+}
+    
+if(args[0].toLowerCase() == "southkorea" || args[0].toLowerCase() == "korea" || args[0].toLowerCase() == "kr") {
+    country = "South Korea";
+}
+    
+if(args[0].toLowerCase() == "thailand" || args[0].toLowerCase() == "th") {
+    country = "Thailand";
+}
+    
+if(args[0].toLowerCase() == "southafrica" || args[0].toLowerCase() == "za") {
+    country = "South Africa";
+}
+    
+if(args[0].toLowerCase() == "unitedarabemirates" || args[0].toLowerCase() == "uae" || args[0].toLowerCase() == "ae") {
+    country = "United Arab Emirates";
+}
+    
+if(args[0].toLowerCase() == "israel" || args[0].toLowerCase() == "il") {
+    country = "Israel";
+}
+    
+if(args[0].toLowerCase() == "turkey" || args[0].toLowerCase() == "tr") {
+    country = "Turkey";
+}
+
+if(country == "Unknown") {
+    console.log("The country you entered is not valid. Please enter the name or 2-letter country code of a country supported by NordVPN.");
+    process.exit(1);
+}
+
+let countryfn = country.replace(" ", "").toLowerCase()
+
+let filename = countryfn + ".ovpn"
 
 let city = "";
 
 let lat = false;
 
-if(args.length == 2) {
+if(args.length >= 2) {
     let rcity = args[1];
 
-    if(rcity == "ny" || rcity == "nyc" || rcity == "new york" || rcity == "new york city" || rcity == "newyork" || rcity == "newyorkcity") {
-        city = "newyorkcity";
-        lat = 40.7141667;
+    if(rcity.toLowerCase() == "atlanta" || rcity.toLowerCase() == "atl") {
+        city = "Atlanta";
+        lat = 33.748888899999997;
     }
-
-    if(rcity == "la" || rcity == "los angeles" || rcity == "losangeles") {
-        city = "losangeles";
-        lat = 34.052222200000003;
+        
+    if(rcity.toLowerCase() == "buffalo" || rcity.toLowerCase() == "buf") {
+        city = "Buffalo";
+        lat = 42.8863889;
     }
-
-    if(rcity == "chicago" || rcity == "chi") {
-        city = "chicago";
+        
+    if(rcity.toLowerCase() == "charlotte" || rcity.toLowerCase() == "cha") {
+        city = "Charlotte";
+        lat = 35.226944400000001;
+    }
+        
+    if(rcity.toLowerCase() == "chicago" || rcity.toLowerCase() == "chi") {
+        city = "Chicago";
         lat = 41.850000000000001;
     }
+        
+    if(rcity.toLowerCase() == "dallas" || rcity.toLowerCase() == "dal") {
+        city = "Dallas";
+        lat = 32.783333300000002;
+    }
+        
+    if(rcity.toLowerCase() == "denver" || rcity.toLowerCase() == "den") {
+        city = "Denver";
+        lat = 39.739166699999998;
+    }
+        
+    if(rcity.toLowerCase() == "kansascity" || rcity.toLowerCase() == "kc") {
+        city = "Denver";
+        lat = 39.099722200000002;
+    }
+        
+    if(rcity.toLowerCase() == "losangeles" || rcity.toLowerCase() == "la" || rcity.toLowerCase() == "lax") {
+        city = "Los Angeles";
+        lat = 34.052222200000003;
+    }
+        
+    if(rcity.toLowerCase() == "manassas" || rcity.toLowerCase() == "man") {
+        city = "Manassas";
+        lat = 38.750833299999996;
+    }
+        
+    if(rcity.toLowerCase() == "miami" || rcity.toLowerCase() == "mia") {
+        city = "Miami";
+        lat = 25.773888899999999;
+    }
+        
+    if(rcity.toLowerCase() == "newyork" || rcity.toLowerCase() == "nyc" || rcity.toLowerCase() == "newyorkcity") {
+        city = "New York";
+        lat = 40.7141667;
+    }
+        
+    if(rcity.toLowerCase() == "phoenix" || rcity.toLowerCase() == "phx") {
+        city = "Phoenix";
+        lat = 33.448333300000002;
+    }
+        
+    if(rcity.toLowerCase() == "saintlouis" || rcity.toLowerCase() == "stl") {
+        city = "Saint Louis";
+        lat = 38.627222199999999;
+    }
+        
+    if(rcity.toLowerCase() == "saltlakecity" || rcity.toLowerCase() == "slc") {
+        city = "Salt Lake City";
+        lat = 40.760833300000002;
+    }
+        
+    if(rcity.toLowerCase() == "sanfrancisco" || rcity.toLowerCase() == "sf" || rcity.toLowerCase() == "sfo") {
+        city = "San Francisco";
+        lat = 37.769813499999998;
+    }
+        
+    if(rcity.toLowerCase() == "seattle" || rcity.toLowerCase() == "sea") {
+        city = "Seattle";
+        lat = 47.606388899999999;
+    }
+        
+    if(rcity.toLowerCase() == "adelaide" || rcity.toLowerCase() == "ade") {
+        city = "Adelaide";
+        lat = -34.928660999999998;
+    }
 
-    filename = country + "_" + city + ".ovpn";
+    if(rcity.toLowerCase() == "brisbane" || rcity.toLowerCase() == "bri") {
+        city = "Brisbane";
+        lat = -27.47101;
+    }
+        
+    if(rcity.toLowerCase() == "melbourne" || rcity.toLowerCase() == "mel") {
+        city = "Melbourne";
+        lat = -37.813938;
+    }
+        
+    if(rcity.toLowerCase() == "perth" || rcity.toLowerCase() == "per") {
+        city = "Perth";
+        lat = -31.95224;
+    }
+        
+    if(rcity.toLowerCase() == "sydney" || rcity.toLowerCase() == "syd") {
+        city = "Sydney";
+        lat = -33.861480999999998;
+    }
+        
+    if(rcity.toLowerCase() == "montreal" || rcity.toLowerCase() == "mon") {
+        city = "Montreal";
+        lat = 45.5;
+    }
+        
+    if(rcity.toLowerCase() == "toronto" || rcity.toLowerCase() == "tor") {
+        city = "Toronto";
+        lat = 43.666666999999997;
+    }
+        
+    if(rcity.toLowerCase() == "vancouver" || rcity.toLowerCase() == "van") {
+        city = "Vancouver";
+        lat = 49.25;
+    }
+        
+    if(rcity.toLowerCase() == "berlin" || rcity.toLowerCase() == "ber") {
+        city = "Berlin";
+        lat = 52.516666999999998;
+    }
+        
+    if(rcity.toLowerCase() == "frankfurt" || rcity.toLowerCase() == "fra") {
+        city = "Frankfurt";
+        lat = 50.116667;
+    }
+        
+    if(rcity.toLowerCase() == "paris" || rcity.toLowerCase() == "par") {
+        city = "Paris";
+        lat = 48.866667;
+    }
+        
+    if(rcity.toLowerCase() == "marseille" || rcity.toLowerCase() == "mar") {
+        city = "Marseille";
+        lat = 43.285412999999998;
+    }
+
+    if(lat == false) {
+        console.log("Unknown city. Please enter the name of the city with no spaces, and make sure that NordVPN supports that city.")
+        process.exit(1)
+    }
+
+    filename = countryfn + "_" + city.toLowerCase().replace(" ", "") + ".ovpn";
 }
 
 if(fs.existsSync(__dirname + "/output/" + filename)) fs.writeFile(__dirname + "/output/" + filename, "", (err) => { if(err) console.log(err) })
@@ -51,8 +419,8 @@ fetch("https://nordvpn.com/api/server", { method: "Get" }).then(res => res.json(
     var i = 0;
     var servers = [];
     json.forEach(element => {
-        if(lat){
-            if(element.location.lat == lat && element.features.openvpn_tcp == true && element.categories[0].name == "Standard VPN servers") {
+        if(lat != false){
+            if((element.country.toLowerCase() == country.toLowerCase() || element.flag.toLowerCase() == country.toLowerCase()) && element.location.lat == lat && element.features.openvpn_tcp == true && element.categories[0].name == "Standard VPN servers") {
                 console.log(element.ip_address + " - " + element.name)
                 servers.push("remote " + element.ip_address + " 443\n")
                 i++
@@ -149,5 +517,11 @@ a196c9de96012090e333519ae18d3509
 9427e7b372d348d352dc4c85e18cd4b9
 3f8a56ddb2e64eb67adfc9b337157ff4
 -----END OpenVPN Static key V1-----
-</tls-auth>`)
+</tls-auth>`);
+    if(i == 0) {
+        try {
+            writer.close()
+            fs.rm(__dirname + "/output/" + filename)
+        } catch (error) {}
+    }
 })
