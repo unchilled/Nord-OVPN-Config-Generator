@@ -246,7 +246,7 @@ if(args[0].toLowerCase() == "turkey" || args[0].toLowerCase() == "tr") {
 }
 
 if(country == "Unknown") {
-    console.log("The country you entered is not valid. Please enter the name or 2-letter country code of a country supported by NordVPN.");
+    console.log("The country you entered is not valid. Please enter the name or 2-letter country code of a country supported by NordVPN. Do not include spaces.");
     process.exit(1);
 }
 
@@ -402,7 +402,7 @@ if(args.length >= 2) {
     }
 
     if(lat == false) {
-        console.log("Unknown city. Please enter the name of the city with no spaces, and make sure that NordVPN supports that city.")
+        console.log("The city you entered is not valid. Please enter the name of the city without spaces, and make sure that NordVPN supports that city.")
         process.exit(1)
     }
 
