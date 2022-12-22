@@ -245,9 +245,11 @@ if(args[0].toLowerCase() == "turkey" || args[0].toLowerCase() == "tr") {
     country = "Turkey";
 }
 
+var unknowncountry = false;
+
 if(country == "Unknown") {
-    console.log("The country you entered is not valid. Please enter the name or 2-letter country code of a country supported by NordVPN. Do not include spaces.");
-    process.exit(1);
+    unknowncountry = true
+    country = args[0]
 }
 
 let countryfn = country.replace(" ", "").toLowerCase()
@@ -440,6 +442,15 @@ fetch("https://nordvpn.com/api/server", { method: "Get" }).then(res => res.json(
         chosen.forEach(line => {writer.write(line)})
     } else {
         servers.forEach(line => {writer.write(line)})
+    }
+    if(unknowncountry) {
+        if(i == 0) {
+            console.log("The country you entered is not valid. Please enter the name of the country without spaces, and make sure that NordVPN supports that country.")
+            fs.rm(__dirname + "/output/" + filename, (err) => {})
+            process.exit(1)
+        } else {
+            console.log('The country you entered is not in the hardcoded list of available countries. Please contact unchilled#0001 on Discord or open an issue on Github so that it can be added.')
+        }
     }
     writer.write(`resolv-retry infinite
 remote-random
